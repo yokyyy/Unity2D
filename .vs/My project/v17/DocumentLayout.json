@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\signs\\My project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|c:\\users\\signs\\my project\\assets\\scripts\\health\\health.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|C:\\Users\\signs\\My project\\assets\\scripts\\health\\health.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\health\\health.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|C:\\Users\\signs\\My project\\assets\\scripts\\enemies\\enemydamage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemies\\enemydamage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|C:\\Users\\signs\\My project\\assets\\scripts\\enemies\\firetrap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemies\\firetrap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|c:\\users\\signs\\my project\\assets\\scripts\\enemies\\arrowtrap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemies\\arrowtrap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|c:\\users\\signs\\my project\\assets\\scripts\\enemies\\enemyprojectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemies\\enemyprojectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +30,60 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EnemyProjectile.cs",
+              "DocumentMoniker": "C:\\Users\\signs\\My project\\Assets\\Scripts\\Enemies\\EnemyProjectile.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Enemies\\EnemyProjectile.cs",
+              "ToolTip": "C:\\Users\\signs\\My project\\Assets\\Scripts\\Enemies\\EnemyProjectile.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Enemies\\EnemyProjectile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-27T17:39:23.198Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Arrowtrap.cs",
+              "DocumentMoniker": "C:\\Users\\signs\\My project\\Assets\\Scripts\\Enemies\\Arrowtrap.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Enemies\\Arrowtrap.cs",
+              "ToolTip": "C:\\Users\\signs\\My project\\Assets\\Scripts\\Enemies\\Arrowtrap.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Enemies\\Arrowtrap.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-27T17:15:45.004Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Firetrap.cs",
+              "DocumentMoniker": "C:\\Users\\signs\\My project\\Assets\\Scripts\\Enemies\\Firetrap.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Enemies\\Firetrap.cs",
+              "ToolTip": "C:\\Users\\signs\\My project\\Assets\\Scripts\\Enemies\\Firetrap.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Enemies\\Firetrap.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAgwCAAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-27T16:41:03.218Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EnemyDamage.cs",
+              "DocumentMoniker": "C:\\Users\\signs\\My project\\Assets\\Scripts\\Enemies\\EnemyDamage.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Enemies\\EnemyDamage.cs",
+              "ToolTip": "C:\\Users\\signs\\My project\\Assets\\Scripts\\Enemies\\EnemyDamage.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Enemies\\EnemyDamage.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-27T16:20:03.304Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -24,7 +92,7 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\Health\\Health.cs",
               "ToolTip": "C:\\Users\\signs\\My project\\Assets\\Scripts\\Health\\Health.cs",
               "RelativeToolTip": "Assets\\Scripts\\Health\\Health.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAAAB4AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAACMAAAAAAAAAAAAAADQAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-27T15:12:48.351Z",
               "EditorCaption": ""
