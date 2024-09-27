@@ -3,20 +3,21 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private float horizontal;
     [SerializeField] private float speed = 8f;
     [SerializeField] private float jumpPower = 16f;
-    private bool isFacingRight = true;
-
-    private bool canDash = true;
-    private bool isDashing;
     [SerializeField] private float dashingPower = 24f;
     [SerializeField] private float dashingTime = 0.2f;
     [SerializeField] private float dashingCooldown = 1f;
-
     [SerializeField] private TrailRenderer tr;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
+    
+    private float horizontal;
+    private bool isFacingRight = true;
+    private bool doubleJump;
+    private bool canDash = true;
+    private bool isDashing;
+
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -38,14 +39,19 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+        if (isGrounded() && !Input.GetButton("Jump"))
+        {
+            doubleJump = false;
+        }
         horizontal = Input.GetAxisRaw("Horizontal");
 
         // Обработка прыжка
         if (Input.GetButtonDown("Jump"))
         {
-            if (isGrounded())
+            if (isGrounded() || doubleJump)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                doubleJump = !doubleJump;
                 anim.SetTrigger("Jump");
             }
             else if (onWall())
