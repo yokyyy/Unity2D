@@ -10,20 +10,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float dashingCooldown = 1f;
     [SerializeField] private TrailRenderer tr;
     [SerializeField] private LayerMask groundLayer;
-    [SerializeField] private LayerMask wallLayer;
-    
+
     private float horizontal;
     private bool isFacingRight = true;
     private bool doubleJump;
     private bool canDash = true;
     private bool isDashing;
 
-
     private Rigidbody2D rb;
     private Animator anim;
     private BoxCollider2D boxCollider;
-
-    private float wallJumpCooldown;
 
     private void Awake()
     {
@@ -39,10 +35,12 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
+        // Сброс двойного прыжка, если персонаж на земле и не нажата кнопка прыжка
         if (isGrounded() && !Input.GetButton("Jump"))
         {
             doubleJump = false;
         }
+
         horizontal = Input.GetAxisRaw("Horizontal");
 
         // Обработка прыжка
@@ -54,12 +52,9 @@ public class PlayerMovement : MonoBehaviour
                 doubleJump = !doubleJump;
                 anim.SetTrigger("Jump");
             }
-            else if (onWall())
-            {
-                WallJump();
-            }
         }
 
+        // Ограничение высоты прыжка при отпускании кнопки
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
@@ -71,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
             StartCoroutine(Dash());
         }
 
-        // Flip персонажа
+        // Изменение направления персонажа
         Flip();
 
         // Установка параметров анимации
@@ -86,29 +81,21 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        if (wallJumpCooldown > 0.2f)
-        {
-            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
-            if (onWall() && !isGrounded())
-            {
-                rb.gravityScale = 0;
-                rb.velocity = Vector2.zero;
-            }
-            else
-            {
-                rb.gravityScale = 7;
-            }
+        if (isGrounded())
+        {
+            rb.gravityScale = 7;
         }
         else
         {
-            wallJumpCooldown += Time.deltaTime;
+            rb.gravityScale = 7;
         }
     }
 
     private void Flip()
     {
-        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
+        if ((isFacingRight && horizontal < 0f) || (!isFacingRight && horizontal > 0f))
         {
             Vector3 localScale = transform.localScale;
             isFacingRight = !isFacingRight;
@@ -133,21 +120,6 @@ public class PlayerMovement : MonoBehaviour
         canDash = true;
     }
 
-    private void WallJump()
-    {
-        if ((isFacingRight && horizontal > 0f) || (!isFacingRight && horizontal < 0f))
-        {
-            rb.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * speed * 0.75f, jumpPower);
-            Flip();
-        }
-        else
-        {
-            rb.velocity = new Vector2(Mathf.Sign(transform.localScale.x) * speed * 0.75f, jumpPower);
-        }
-
-        wallJumpCooldown = 0;
-    }
-
     private bool isGrounded()
     {
         RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size,
@@ -155,15 +127,9 @@ public class PlayerMovement : MonoBehaviour
         return raycastHit.collider != null;
     }
 
-    private bool onWall()
-    {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size,
-            0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
-        return raycastHit.collider != null;
-    }
+    // Обновлённый метод canAttack после удаления проверки на стены
     public bool canAttack()
     {
-        return horizontal == 0 && isGrounded() && !onWall();
+        return horizontal == 0 && isGrounded();
     }
-
 }
