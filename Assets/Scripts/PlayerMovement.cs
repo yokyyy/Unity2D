@@ -1,91 +1,163 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] private float speed;
-    [SerializeField] private float jumpPower;
+    private float horizontal;
+    [SerializeField] private float speed = 8f;
+    [SerializeField] private float jumpPower = 16f;
+    private bool isFacingRight = true;
+
+    private bool canDash = true;
+    private bool isDashing;
+    [SerializeField] private float dashingPower = 24f;
+    [SerializeField] private float dashingTime = 0.2f;
+    [SerializeField] private float dashingCooldown = 1f;
+
+    [SerializeField] private TrailRenderer tr;
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private LayerMask wallLayer;
-    private Rigidbody2D body;
+
+    private Rigidbody2D rb;
     private Animator anim;
     private BoxCollider2D boxCollider;
+
     private float wallJumpCooldown;
-    private float horizontalInput;
 
     private void Awake()
     {
-        body = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
-
     private void Update()
     {
-        horizontalInput = Input.GetAxis("Horizontal");
+        if (isDashing)
+        {
+            return;
+        }
 
-        //Flip player when moving left-right
-        if (horizontalInput > 0.01f)
-            transform.localScale = Vector3.one;
-        else if (horizontalInput < -0.01f)
-            transform.localScale = new Vector3(-1, 1, 1);
+        horizontal = Input.GetAxisRaw("Horizontal");
 
-        //Set animator parameters
-        anim.SetBool("Run", horizontalInput != 0);
+        // Обработка прыжка
+        if (Input.GetButtonDown("Jump"))
+        {
+            if (isGrounded())
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                anim.SetTrigger("Jump");
+            }
+            else if (onWall())
+            {
+                WallJump();
+            }
+        }
+
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+        }
+
+        // Обработка даша
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        {
+            StartCoroutine(Dash());
+        }
+
+        // Flip персонажа
+        Flip();
+
+        // Установка параметров анимации
+        anim.SetBool("Run", horizontal != 0);
         anim.SetBool("grounded", isGrounded());
+    }
 
-        //Wall jump logic
+    private void FixedUpdate()
+    {
+        if (isDashing)
+        {
+            return;
+        }
+
         if (wallJumpCooldown > 0.2f)
         {
-            body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
             if (onWall() && !isGrounded())
             {
-                body.gravityScale = 0;
-                body.velocity = Vector2.zero;
+                rb.gravityScale = 0;
+                rb.velocity = Vector2.zero;
             }
             else
-                body.gravityScale = 7;
-
-            if (Input.GetKey(KeyCode.Space))
-                Jump();
+            {
+                rb.gravityScale = 7;
+            }
         }
         else
+        {
             wallJumpCooldown += Time.deltaTime;
+        }
     }
-    private void Jump()
+
+    private void Flip()
     {
-        if (isGrounded())
+        if (isFacingRight && horizontal < 0f || !isFacingRight && horizontal > 0f)
         {
-            body.velocity = new Vector2(body.velocity.x, jumpPower);
-            anim.SetTrigger("Jump");
+            Vector3 localScale = transform.localScale;
+            isFacingRight = !isFacingRight;
+            localScale.x *= -1f;
+            transform.localScale = localScale;
         }
-        else if (onWall() && !isGrounded())
+    }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        rb.velocity = new Vector2(transform.localScale.x * dashingPower, 0f);
+        tr.emitting = true;
+        yield return new WaitForSeconds(dashingTime);
+        tr.emitting = false;
+        rb.gravityScale = originalGravity;
+        isDashing = false;
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
+    }
+
+    private void WallJump()
+    {
+        if ((isFacingRight && horizontal > 0f) || (!isFacingRight && horizontal < 0f))
         {
-            if (horizontalInput == 0)
-            {
-                body.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * 10, 0);
-                transform.localScale = new Vector3(-Mathf.Sign(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-            }
-            else
-                body.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * 3, 6);
-    
-            wallJumpCooldown = 0;
+            rb.velocity = new Vector2(-Mathf.Sign(transform.localScale.x) * speed * 0.75f, jumpPower);
+            Flip();
         }
+        else
+        {
+            rb.velocity = new Vector2(Mathf.Sign(transform.localScale.x) * speed * 0.75f, jumpPower);
+        }
+
+        wallJumpCooldown = 0;
     }
 
     private bool isGrounded()
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, Vector2.down, 0.1f, groundLayer);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size,
+            0, Vector2.down, 0.1f, groundLayer);
         return raycastHit.collider != null;
     }
+
     private bool onWall()
     {
-        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size, 0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(boxCollider.bounds.center, boxCollider.bounds.size,
+            0, new Vector2(transform.localScale.x, 0), 0.1f, wallLayer);
         return raycastHit.collider != null;
     }
     public bool canAttack()
     {
-        return horizontalInput == 0 && isGrounded() && !onWall();
+        return horizontal == 0 && isGrounded() && !onWall();
     }
+
 }
