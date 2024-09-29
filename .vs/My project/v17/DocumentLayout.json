@@ -3,24 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\signs\\My project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|c:\\users\\signs\\my project\\assets\\scripts\\traps\\firetrap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\traps\\firetrap.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|c:\\users\\signs\\my project\\assets\\scripts\\player\\playerrespawn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\playerrespawn.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|c:\\users\\signs\\my project\\assets\\scripts\\health\\health.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|C:\\Users\\signs\\My project\\assets\\scripts\\health\\health.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\health\\health.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|C:\\Users\\signs\\My project\\assets\\scripts\\enemy\\enemypatrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\enemypatrol.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|c:\\users\\signs\\my project\\assets\\scripts\\player\\projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\projectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|c:\\users\\signs\\my project\\assets\\scripts\\enemy\\meleeenemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\enemy\\meleeenemy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|c:\\users\\signs\\my project\\assets\\scripts\\core\\cameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32C3BDE6-E125-3128-82C1-25D0441455A3}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\core\\cameracontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,19 +22,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Firetrap.cs",
-              "DocumentMoniker": "C:\\Users\\signs\\My project\\Assets\\Scripts\\Traps\\Firetrap.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Traps\\Firetrap.cs",
-              "ToolTip": "C:\\Users\\signs\\My project\\Assets\\Scripts\\Traps\\Firetrap.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Traps\\Firetrap.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAgAAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "CameraController.cs",
+              "DocumentMoniker": "C:\\Users\\signs\\My project\\Assets\\Scripts\\Core\\CameraController.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Core\\CameraController.cs",
+              "ToolTip": "C:\\Users\\signs\\My project\\Assets\\Scripts\\Core\\CameraController.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Core\\CameraController.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAUwCMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T09:48:01.536Z",
+              "WhenOpened": "2024-09-29T11:45:16.729Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "PlayerRespawn.cs",
+              "DocumentMoniker": "C:\\Users\\signs\\My project\\Assets\\Scripts\\Player\\PlayerRespawn.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\PlayerRespawn.cs",
+              "ToolTip": "C:\\Users\\signs\\My project\\Assets\\Scripts\\Player\\PlayerRespawn.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Player\\PlayerRespawn.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAAAEcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-09-29T11:38:51.729Z",
               "EditorCaption": ""
             },
             {
@@ -53,48 +58,9 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\Health\\Health.cs",
               "ToolTip": "C:\\Users\\signs\\My project\\Assets\\Scripts\\Health\\Health.cs",
               "RelativeToolTip": "Assets\\Scripts\\Health\\Health.cs",
-              "ViewState": "AgIAADAAAAAAAAAAAAAiwEYAAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAAAG0AAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-09-29T08:54:43.964Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Projectile.cs",
-              "DocumentMoniker": "C:\\Users\\signs\\My project\\Assets\\Scripts\\Player\\Projectile.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Player\\Projectile.cs",
-              "ToolTip": "C:\\Users\\signs\\My project\\Assets\\Scripts\\Player\\Projectile.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Player\\Projectile.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAiwCYAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-29T08:53:20.619Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "MeleeEnemy.cs",
-              "DocumentMoniker": "C:\\Users\\signs\\My project\\Assets\\Scripts\\Enemy\\MeleeEnemy.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Enemy\\MeleeEnemy.cs",
-              "ToolTip": "C:\\Users\\signs\\My project\\Assets\\Scripts\\Enemy\\MeleeEnemy.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Enemy\\MeleeEnemy.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAqwEYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-28T22:28:47.687Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "EnemyPatrol.cs",
-              "DocumentMoniker": "C:\\Users\\signs\\My project\\Assets\\Scripts\\Enemy\\EnemyPatrol.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\Enemy\\EnemyPatrol.cs",
-              "ToolTip": "C:\\Users\\signs\\My project\\Assets\\Scripts\\Enemy\\EnemyPatrol.cs",
-              "RelativeToolTip": "Assets\\Scripts\\Enemy\\EnemyPatrol.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAAAEgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-09-28T21:42:33Z",
               "EditorCaption": ""
             }
           ]

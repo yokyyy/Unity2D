@@ -8,9 +8,28 @@ public class CameraFollow : MonoBehaviour
 
     [SerializeField] private Transform target;
 
-    private void Update()
+    private void LateUpdate()
     {
+        if (target == null)
+            return;
+
         Vector3 targetPosition = target.position + offset;
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
+    }
+
+    // Метод для мгновенного перемещения камеры к новой позиции
+    public void MoveToNewRoom(Transform roomTransform)
+    {
+        if (roomTransform == null)
+        {
+            Debug.LogError("roomTransform is null in MoveToNewRoom.");
+            return;
+        }
+
+        // Установка позиции камеры к центру комнаты плюс смещение
+        transform.position = roomTransform.position + offset;
+        // Сбросить скорость для SmoothDamp
+        velocity = Vector3.zero;
+        Debug.Log("Camera moved to new room: " + roomTransform.name);
     }
 }
