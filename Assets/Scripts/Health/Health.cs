@@ -88,7 +88,7 @@ public class Health : MonoBehaviour
     private void Die()
     {
         dead = true;
-        anim.SetBool("grounded", true);
+       // anim.SetBool("grounded", true);
         anim.SetTrigger("die");
 
         // Отключение всех указанных компонентов
@@ -103,7 +103,6 @@ public class Health : MonoBehaviour
             AudioSource.PlayClipAtPoint(deathSound, transform.position);
         }
 
-        Debug.Log("Player died.");
     }
 
     //Respawn
@@ -122,5 +121,9 @@ public class Health : MonoBehaviour
 
         dead = false; // Сброс флага смерти
         Debug.Log("Player respawned with full health.");
+    }
+    private void Deactivate()
+    {
+        gameObject.SetActive(false);
     }
 }

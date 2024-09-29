@@ -5,21 +5,23 @@ public class PlayerRespawn : MonoBehaviour
     [SerializeField] private AudioClip checkpoint;
     private Transform currentCheckpoint;
     private Health playerHealth;
+    private UIManager uiManager;
 
     private void Awake()
     {
         playerHealth = GetComponent<Health>();
+        uiManager = FindObjectOfType<UIManager>();
         if (playerHealth == null)
         {
             Debug.LogError("Health компонент не найден на игроке.");
         }
     }
 
-    public void Respawn()
+    public void CheckRespawn()
     {
         if (currentCheckpoint == null)
         {
-            Debug.LogError("No checkpoint set for respawn.");
+            uiManager.GameOver();
             return;
         }
 
