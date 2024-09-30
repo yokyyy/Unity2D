@@ -22,11 +22,12 @@ public class PlayerMovement : MonoBehaviour
     private BoxCollider2D boxCollider;
 
     private void Awake()
-    {
-        rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-        boxCollider = GetComponent<BoxCollider2D>();
-    }
+{
+    rb = GetComponent<Rigidbody2D>();
+    anim = GetComponent<Animator>();
+    boxCollider = GetComponent<BoxCollider2D>();
+    rb.gravityScale = 7; 
+}
 
     private void Update()
     {
@@ -35,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
             return;
         }
 
-        // Сброс двойного прыжка, если персонаж на земле и не нажата кнопка прыжка
+        // пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         if (isGrounded() && !Input.GetButton("Jump"))
         {
             doubleJump = false;
@@ -43,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
         horizontal = Input.GetAxisRaw("Horizontal");
 
-        // Обработка прыжка
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         if (Input.GetButtonDown("Jump"))
         {
             if (isGrounded() || doubleJump)
@@ -54,44 +55,37 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        // Ограничение высоты прыжка при отпускании кнопки
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
 
-        // Обработка даша
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartCoroutine(Dash());
         }
 
-        // Изменение направления персонажа
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         Flip();
 
-        // Установка параметров анимации
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         anim.SetBool("Run", horizontal != 0);
         anim.SetBool("grounded", isGrounded());
     }
 
-    private void FixedUpdate()
+  private void FixedUpdate()
+{
+    if (isDashing)
     {
-        if (isDashing)
-        {
-            return;
-        }
-
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
-
-        if (isGrounded())
-        {
-            rb.gravityScale = 7;
-        }
-        else
-        {
-            rb.gravityScale = 7;
-        }
+        return;
     }
+
+    rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
+    // РЈРґР°Р»СЏРµРј СѓСЃС‚Р°РЅРѕРІРєСѓ gravityScale РёР· FixedUpdate
+}
 
     private void Flip()
     {
@@ -127,9 +121,16 @@ public class PlayerMovement : MonoBehaviour
         return raycastHit.collider != null;
     }
 
-    // Обновлённый метод canAttack после удаления проверки на стены
+    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ canAttack пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     public bool canAttack()
     {
         return horizontal == 0 && isGrounded();
     }
+    public void ResetJumpState()
+{
+    doubleJump = false;
+    isDashing = false;
+    canDash = true;
+}
+
 }

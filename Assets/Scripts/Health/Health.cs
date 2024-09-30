@@ -4,7 +4,7 @@ using System.Collections;
 public class Health : MonoBehaviour
 {
     [Header("Health")]
-    [SerializeField] private float startingHealth = 100f; // Убедитесь, что установлено значение по умолчанию
+    [SerializeField] private float startingHealth = 100f; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     public float currentHealth { get; private set; }
     private Animator anim;
     private bool dead;
@@ -28,18 +28,18 @@ public class Health : MonoBehaviour
         anim = GetComponent<Animator>();
         if (anim == null)
         {
-            Debug.LogError("Animator не найден на объекте.");
+            Debug.LogError("Animator пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.");
         }
 
         spriteRend = GetComponent<SpriteRenderer>();
         if (spriteRend == null)
         {
-            Debug.LogError("SpriteRenderer не найден на объекте.");
+            Debug.LogError("SpriteRenderer пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.");
         }
 
         if (components == null || components.Length == 0)
         {
-            Debug.LogWarning("Не назначены компоненты для отключения при смерти.");
+            Debug.LogWarning("пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.");
         }
     }
 
@@ -73,7 +73,7 @@ public class Health : MonoBehaviour
     private IEnumerator Invunerability()
     {
         invulnerable = true;
-        Physics2D.IgnoreLayerCollision(10, 11, true); // Убедитесь, что слои 10 и 11 соответствуют игроку и врагам
+        Physics2D.IgnoreLayerCollision(10, 11, true); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ 10 пїЅ 11 пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
         for (int i = 0; i < numberOfFlashes; i++)
         {
             spriteRend.color = new Color(1, 0, 0, 0.5f);
@@ -91,13 +91,13 @@ public class Health : MonoBehaviour
        // anim.SetBool("grounded", true);
         anim.SetTrigger("die");
 
-        // Отключение всех указанных компонентов
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         foreach (Behaviour component in components)
         {
             component.enabled = false;
         }
 
-        // Воспроизведение звука смерти, если назначен
+        // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
         if (deathSound != null)
         {
             AudioSource.PlayClipAtPoint(deathSound, transform.position);
@@ -106,22 +106,38 @@ public class Health : MonoBehaviour
     }
 
     //Respawn
-    public void Respawn()
+public void Respawn()
+{
+    AddHealth(startingHealth);
+    anim.ResetTrigger("die");
+    anim.Play("idle");
+    StartCoroutine(Invunerability());
+
+    // РђРєС‚РёРІРёСЂРѕРІР°С‚СЊ РІСЃРµ СѓРєР°Р·Р°РЅРЅС‹Рµ РєРѕРјРїРѕРЅРµРЅС‚С‹
+    foreach (Behaviour component in components)
     {
-        AddHealth(startingHealth);
-        anim.ResetTrigger("die");
-        anim.Play("idle");
-        StartCoroutine(Invunerability());
-
-        // Активировать все указанные компоненты
-        foreach (Behaviour component in components)
-        {
-            component.enabled = true;
-        }
-
-        dead = false; // Сброс флага смерти
-        Debug.Log("Player respawned with full health.");
+        component.enabled = true;
     }
+
+    // РЎР±СЂРѕСЃ СЃРєРѕСЂРѕСЃС‚Рё Рё РіСЂР°РІРёС‚Р°С†РёРё
+    Rigidbody2D rb = GetComponent<Rigidbody2D>();
+    if (rb != null)
+    {
+        rb.velocity = Vector2.zero;
+        rb.gravityScale = 7;
+    }
+
+    // РЎР±СЂРѕСЃ СЃРѕСЃС‚РѕСЏРЅРёСЏ РїСЂС‹Р¶РєРѕРІ
+    PlayerMovement playerMovement = GetComponent<PlayerMovement>();
+    if (playerMovement != null)
+    {
+        playerMovement.ResetJumpState();
+    }
+
+    dead = false; // РЎР±СЂРѕСЃ С„Р»Р°РіР° СЃРјРµСЂС‚Рё
+    Debug.Log("Player respawned with full health.");
+}
+
     private void Deactivate()
     {
         gameObject.SetActive(false);
